@@ -28,16 +28,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const express_ejs_layouts_1 = __importDefault(require("express-ejs-layouts"));
+const database_1 = require("./database");
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
 const routes = __importStar(require("./routes"));
 const app = (0, express_1.default)();
 //Setup Port
 dotenv_1.default.config();
-const port = process.env.SERVER_PORT;
-app.listen(port, () => {
-    console.log(`Connected successfully on port ${port}`);
-});
+const port = process.env.SERVER_PORT || undefined;
 //Setup Layouts
 app.use(express_ejs_layouts_1.default);
 app.set('layout', 'layouts/layout');
@@ -46,3 +44,13 @@ app.set('view engine', 'ejs');
 app.set('views', path_1.default.join(__dirname, 'views'));
 //Setup Routes
 routes.register(app);
+//Connect to Database
+database_1.Database.initialize().then(() => {
+    console.log('Database connected successfully');
+    app.listen(port, () => {
+        console.log(`Connected successfully on port ${port}`);
+    });
+}).catch((error) => {
+    console.log('Database connection failed');
+    console.log(error);
+});
