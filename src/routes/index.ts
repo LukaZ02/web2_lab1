@@ -1,6 +1,6 @@
 import * as express from "express";
-import IndexController from "../controllers/IndexController";
+import { registerTicketRoutes} from "./ticketRoutes";
 
 export const register = (app: express.Application) => {
-    app.get('/', IndexController.index);
+    registerTicketRoutes(app)
 }
