@@ -42,9 +42,10 @@ app.set('layout', 'layouts/layout');
 //Setup View Engine
 app.set('view engine', 'ejs');
 app.set('views', path_1.default.join(__dirname, 'views'));
+//Setup Body Parser
+app.use(express_1.default.json());
 //Setup Routes
 routes.register(app);
-app.use(express_1.default.json());
 //Connect to DataSource
 data_source_1.AppDataSource.initialize().then(() => {
     console.log('DataSource connected successfully');
