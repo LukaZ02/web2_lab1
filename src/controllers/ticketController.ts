@@ -1,19 +1,15 @@
+import {TicketService} from "../service/ticketService";
 import {Request, Response} from "express";
-import {Ticket} from "../entities/ticket";
-import {TicketRepository} from "../repositories/ticketRepository";
 
 export class TicketController {
-    private static ticketRepository = new TicketRepository();
 
     public static async createTicket(req: Request, res: Response) {
-        const { oib, firstName, lastName } = req.body;
-        const newTicket = new Ticket(oib, firstName, lastName);
-        await TicketController.ticketRepository.create(newTicket);
-        res.status(201).send("Ticket has been created");
+        await TicketService.createTicket(req, res);
+        res.status(201).render('index', { message: 'Ticket created successfully' });
     }
 
     public static async getAllTickets(req: Request, res: Response) {
-        const tickets = await TicketController.ticketRepository.getAll();
-        res.status(200).json(tickets);
+        const tickets = await TicketService.getAllTickets(req, res);
+        res.status(200).render('index', { tickets: tickets });
     }
 }

@@ -19,6 +19,7 @@ app.set('layout', 'layouts/layout');
 //Setup View Engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'views')));
 
 //Setup Json Parser
 app.use(express.json());
