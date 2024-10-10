@@ -2,5 +2,8 @@ import * as express from "express";
 import { registerTicketRoutes} from "./ticketRoutes";
 
 export const register = (app: express.Application) => {
-    registerTicketRoutes(app)
+    app.get('/', (req, res) => {
+        res.render('index', { layout: 'layouts/layout' });
+    });
+    registerTicketRoutes(app);
 }

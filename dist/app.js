@@ -42,7 +42,7 @@ app.set('layout', 'layouts/layout');
 //Setup View Engine
 app.set('view engine', 'ejs');
 app.set('views', path_1.default.join(__dirname, 'views'));
-app.use(express_1.default.static(path_1.default.join(__dirname, 'views')));
+app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 //Setup Json Parser
 app.use(express_1.default.json());
 //Setup Routes

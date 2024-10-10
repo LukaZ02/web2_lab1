@@ -4,7 +4,6 @@ import { AppDataSource } from './data-source';
 import dotenv from 'dotenv';
 import path from 'path';
 import * as routes from "./routes";
-import bodyParser from "body-parser";
 
 const app : Application = express();
 
@@ -19,13 +18,14 @@ app.set('layout', 'layouts/layout');
 //Setup View Engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Setup Json Parser
 app.use(express.json());
 
 //Setup Routes
 routes.register(app);
+
 
 //Connect to DataSource
 AppDataSource.initialize().then(() => {

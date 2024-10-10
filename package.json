@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --watch src --exec ts-node src/app.ts",
     "clean": "rimraf ./dist",
-    "build": "npm run clean && npx tsc && cp -r ./src/views ./dist/views",
+    "build": "npm run clean && npx tsc && cp -r ./src/views ./dist/views && cp -r ./src/public ./dist/public",
     "start": "npm run build && node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,6 +28,7 @@
     "@types/express": "^5.0.0",
     "@types/express-ejs-layouts": "^2.5.4",
     "@types/node": "^22.7.4",
+    "nodemon": "^3.1.7",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
