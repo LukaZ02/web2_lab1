@@ -3,7 +3,7 @@ import expressEjsLayouts from 'express-ejs-layouts';
 import { AppDataSource } from './data-source';
 import dotenv from 'dotenv';
 import path from 'path';
-import * as routes from "./routes";
+import { ticketRoutes } from './routes/ticketRoutes';
 
 const app : Application = express();
 
@@ -22,10 +22,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Setup Json Parser
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //Setup Routes
-routes.register(app);
-
+ticketRoutes(app)
 
 //Connect to DataSource
 AppDataSource.initialize().then(() => {
