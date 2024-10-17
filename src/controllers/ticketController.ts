@@ -35,7 +35,7 @@ export class TicketController {
             const newTicket = new Ticket(vatin, firstName, lastName);
             const uuid = (await TicketController.ticketRepository.create(newTicket)).uuid;
             const qr = QRCode(0, 'M');
-            qr.addData('http://localhost:3000/ticket/' + uuid);
+            qr.addData('https://web2-lab1-kz9s.onrender.com/ticket/' + uuid);
             qr.make();
             const qrImage : string = qr.createDataURL(10, 0);
             if (!req.oidc.isAuthenticated()) {
