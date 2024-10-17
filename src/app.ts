@@ -42,11 +42,9 @@ ticketRoutes(app)
 
 //Connect to DataSource
 AppDataSource.initialize().then(() => {
-    console.log('DataSource connected successfully');
     app.listen(port, () => {
-        console.log(`Connected successfully on port ${port}`);
+
     });
     }).catch((error) => {
-        console.log('DataSource connection failed');
-        console.log(error);
+
     });
