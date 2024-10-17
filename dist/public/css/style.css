@@ -1,0 +1,133 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color: red;
+    padding-left: 2rem;
+    height: 4.5rem;
+    padding-right: 2rem;
+    padding-top: 1.1rem;
+}
+.heading-container {
+    margin-left: 2rem;
+    margin-bottom: 0.5rem;
+}
+.navigation-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    padding-right: 2rem;
+    height: 3rem;
+    width: 6%;
+}
+.log-in-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding-right: 2rem;
+    height: 3rem;
+    width: 25%;
+}
+#heading {
+    font-size: 4em;
+    font-weight: bold;
+    color: red;
+    margin: 0;
+}
+.button-54 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    border: 3px solid;
+    padding: 0.25em 0.5em;
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    height: 100%;
+}
+.button-54:active {
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
+}
+
+/*
+home.ejs
+*/
+.main-container-index {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+.counter-container {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30rem;
+    width: 60rem;
+    background-color: whitesmoke;
+    border: 0.5rem solid red;
+    overflow: hidden;
+    flex-direction: column;
+}
+#counter-name {
+    margin: 0;
+    font-size: 5em;
+    font-weight: bold;
+    color: red;
+    padding-bottom: 2rem;
+}
+.counter {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+}
+.number {
+    font-family: "Open Sans", sans-serif;
+    font-size: 10rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    margin: 0;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    border: 0.6rem solid black;
+}
+#logged-in-username {
+    display: flex;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    justify-content: center;
+    align-items: center;
+}
+#only-log-in {
+    margin-left: 20rem;
+}
+
+@media (min-width: 768px) {
+    .button-54 {
+        padding: 0.25em 0.75em;
+    }
+}
+
