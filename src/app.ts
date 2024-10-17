@@ -5,21 +5,24 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { ticketRoutes } from './routes/ticketRoutes';
 import {auth} from 'express-openid-connect';
-
-const config = {
-    authRequired: false,
-    auth0Logout: true,
-    secret: process.env.SECRET,
-    baseURL: process.env.BASEURL,
-    clientID: process.env.CLIENTID,
-    issuerBaseURL: process.env.ISSUER
-};
+import * as https from "node:https";
+import * as fs from "node:fs";
 
 const app : Application = express();
 
 //Setup Port
 dotenv.config();
-const port = process.env.SERVER_PORT || undefined;
+const externalUrl = process.env.RENDER_EXTERNAL_URL;
+const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 4080;
+
+const config = {
+    authRequired: false,
+    auth0Logout: true,
+    secret: process.env.SECRET,
+    baseURL: externalUrl || `https://localhost:${port}`,
+    clientID: process.env.CLIENTID,
+    issuerBaseURL: process.env.ISSUER
+};
 
 //Setup Layouts
 app.use(expressEjsLayouts);
@@ -42,9 +45,18 @@ ticketRoutes(app)
 
 //Connect to DataSource
 AppDataSource.initialize().then(() => {
-    app.listen(port, () => {
-
-    });
-    }).catch((error) => {
-
-    });
+    if (externalUrl) {
+        const hostname = '0.0.0.0'; //ne 127.0.0.1
+        app.listen(port, hostname, () => {
+            console.log(`Server locally running at http://${hostname}:${port}/ and from outside on ${externalUrl}`);
+        });
+    } else {
+        https.createServer({
+            key: fs.readFileSync('server.key'),
+            cert: fs.readFileSync('server.cert')
+        }, app)
+            .listen(port, function () {
+                console.log(`Server running at https://localhost:${port}/`);
+        });
+    }
+});
