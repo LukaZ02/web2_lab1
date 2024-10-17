@@ -1,8 +1,11 @@
-import { Column, Entity } from "typeorm";
+import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity('ticket')
 export class Ticket {
-  @Column({ type: "text", primary: true })
+  @PrimaryGeneratedColumn("uuid")
+  uuid!: string;
+
+  @Column({ type: "text" })
   oib: string;
 
   @Column({ type: "text" })
@@ -10,6 +13,9 @@ export class Ticket {
 
   @Column({ type: "text" })
   lastName: string;
+
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  createdAt!: Date;
 
   constructor(oib: string, firstName: string, lastName: string) {
     this.oib = oib;

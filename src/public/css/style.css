@@ -20,11 +20,11 @@ html, body {
 }
 .navigation-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-content: center;
     padding-right: 2rem;
     height: 3rem;
-    width: 28%;
+    width: 6%;
 }
 .log-in-buttons {
     display: flex;
@@ -32,7 +32,7 @@ html, body {
     align-content: center;
     padding-right: 2rem;
     height: 3rem;
-    width: 12.5%;
+    width: 25%;
 }
 #heading {
     font-size: 4em;
@@ -110,55 +110,19 @@ home.ejs
     padding-left: 2rem;
     border: 0.6rem solid black;
 }
-
-/*
-create.ejs
-*/
-.form-container {
-    margin-top: 4rem;
+#logged-in-username {
     display: flex;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
     justify-content: center;
     align-items: center;
-    height: 30rem;
-    width: 60rem;
-    background-color: whitesmoke;
-    border: 0.5rem solid red;
-    overflow: hidden;
 }
-#create-button {
-    height: 2.5rem;
-    width: 10rem;
-}
-.form {
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    height: 90%;
-}
-.form-labels {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: red;
-    margin: 0;
-}
-.input-labels {
-    width: 30%;
-    height: 6%;
-    border: solid 0.3rem black;
-    font-size: 1.2rem;
-    text-align: center;
-}
-
-/*
-success.ejs
-*/
-#success-text {
-    font-size: 3em;
-    font-weight: bold;
-    color: red;
-    margin-bottom: 2rem;
+#only-log-in {
+    margin-left: 20rem;
 }
 
 @media (min-width: 768px) {

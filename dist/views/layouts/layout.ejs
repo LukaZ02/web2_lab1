@@ -13,12 +13,14 @@
     <div class="navigation">
         <div class="navigation-buttons">
             <a href="/ticket/home"><button class="button-54">Home</button></a>
-            <a href="/ticket/create"><button class="button-54">Create a ticket</button></a>
-            <button class="button-54">View my tickets</button>
         </div>
         <div class="log-in-buttons">
-            <button class="button-54">Log in</button>
-            <button class="button-54">Sign up</button>
+            <% if(!isAuthenticated) {%>
+                <a href="/login"><button class="button-54" id="only-log-in">Log in</button></a>
+            <% } else { %>
+                <div id="logged-in-username">Welcome, <%=name%></div>
+                <a href="/logout"><button class="button-54">Log out</button></a>
+            <% } %>
         </div>
     </div>
     <%- body %>

@@ -1,9 +1,8 @@
 import { Repository } from "typeorm";
 import { Ticket } from "../entities/ticket";
-import { TicketRepositoryInterface } from "./ticketRepositoryInterface";
 import { AppDataSource } from "../data-source";
 
-export class TicketRepository implements TicketRepositoryInterface {
+export class TicketRepository {
     private repository: Repository<Ticket>;
 
     constructor() {
@@ -16,5 +15,13 @@ export class TicketRepository implements TicketRepositoryInterface {
 
     async getAll(): Promise<Ticket[]> {
         return await this.repository.find();
+    }
+
+    async findByOIB(oib: string) {
+        return await this.repository.find({ where: { oib: oib } });
+    }
+
+    async findByUUID(uuid: string) {
+        return await this.repository.findOne({ where: { uuid: uuid } });
     }
 }
