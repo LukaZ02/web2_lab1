@@ -6,9 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const jwks_rsa_1 = __importDefault(require("jwks-rsa"));
-// Initialize JWKS client to fetch signing keys from your Auth0 domain
 const client = (0, jwks_rsa_1.default)({
-    jwksUri: 'https://dev-pvbzlyzk7iws7q7a.eu.auth0.com/.well-known/jwks.json'
+    jwksUri: process.env.JWKS_URI
 });
 // Function to get the signing key from the JWKS URI
 const getKey = (header, callback) => {
@@ -27,15 +26,14 @@ const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
         res.status(401).json({ message: 'No authorization token provided!' });
-        return; // Return void, do not return Response object
+        return;
     }
-    const token = authHeader.split(' ')[1]; // Extract the token part from 'Bearer <token>'
+    const token = authHeader.split(' ')[1];
     jsonwebtoken_1.default.verify(token, getKey, { algorithms: ['RS256'] }, (err, decoded) => {
         if (err) {
             res.status(401).json({ message: 'Invalid or expired token!' });
-            return; // Return void, do not return Response object
+            return;
         }
-        // Pass control to the next middleware or route handler
         next();
     });
 };
